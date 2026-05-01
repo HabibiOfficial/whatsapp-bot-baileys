@@ -147,6 +147,27 @@ File otomatis di-load saat startup — tidak perlu daftar manual.
 
 ---
 
+## Troubleshooting
+
+### `Bad MAC` / `failed to decrypt message` / `No matching sessions found`
+
+Pesan log seperti ini **bukan fatal** — itu cuma libsignal kasih tahu ada satu pesan masuk yang tidak bisa di-decrypt karena session-nya belum sinkron (biasanya saat lawan baru re-pair, atau bot baru saja restart). Baileys otomatis kirim _retry receipt_ supaya pengirim re-encrypt pesan tersebut. Bot tetap jalan normal.
+
+Project ini sudah pakai pola Baileys yang direkomendasikan untuk meminimalkan error tersebut:
+
+- `makeCacheableSignalKeyStore` — caching kunci signal di memory
+- `msgRetryCounterCache` — counter retry per-pesan supaya tidak loop
+- `cachedGroupMetadata` — caching metadata group untuk decrypt yang lebih cepat
+- `getMessage` callback — supaya Baileys bisa re-encrypt pesan kalau diminta retry oleh server WhatsApp
+
+Lihat `src/bot/connection.js` untuk detailnya.
+
+### Bot disconnect terus
+
+- Cek `OWNER_NUMBERS` di `.env` benar (pakai country code, tanpa `+`)
+- Coba hapus folder `auth_info_baileys/` lalu re-pair (kalau sesi rusak)
+- Pastikan WA di HP **tidak** logout dari Linked Devices
+
 ## Disclaimer
 
 Project ini cuma untuk keperluan edukasi/personal. WhatsApp bisa kapan saja membatasi atau mem-banned akun yang dianggap melanggar [Terms of Service](https://www.whatsapp.com/legal/terms-of-service)-nya. **Pakai dengan hati-hati**, jangan untuk spam/broadcast massal, dan **gunakan nomor cadangan** kalau ragu.
