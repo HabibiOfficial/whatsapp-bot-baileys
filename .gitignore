@@ -1,0 +1,29 @@
+# dependencies
+node_modules/
+package-lock.json.bak
+
+# env
+.env
+.env.local
+.env.*.local
+
+# Baileys auth
+auth_info_baileys/
+session/
+*.session
+
+# data (runtime state — keep folder, ignore contents)
+data/*
+!data/.gitkeep
+
+# logs
+*.log
+npm-debug.log*
+logs/
+
+# editor / OS
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
