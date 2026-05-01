@@ -1,0 +1,25 @@
+{
+  "name": "whatsapp-bot-baileys",
+  "version": "1.0.0",
+  "description": "WhatsApp bot built on Baileys with command handler, auto-reply, media downloader, and group management.",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "dependencies": {
+    "@distube/ytdl-core": "^4.16.4",
+    "@whiskeysockets/baileys": "^6.7.18",
+    "axios": "^1.7.7",
+    "dotenv": "^16.4.5",
+    "node-cache": "^5.1.2",
+    "pino": "^9.5.0",
+    "pino-pretty": "^11.3.0",
+    "qrcode-terminal": "^0.12.0",
+    "wa-sticker-formatter": "^4.4.4"
+  },
+  "license": "MIT"
+}
